@@ -24,6 +24,12 @@ The r2proxy (this name means "reflective reverse proxy") is an implementation of
 
 ## Installation
 
+### Binary
+
+Binary packages are available in the [releases page](https://github.com/usualoma/r2proxy/releases).
+
+### go get
+
 ```
 go get github.com/usualoma/r2proxy
 ```
