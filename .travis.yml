@@ -1,0 +1,18 @@
+language: go
+go:
+  - 1.3
+env:
+  - PATH=/home/travis/gopath/bin:$PATH OSARCHS="darwin/amd64 linux/386 linux/amd64 windows/amd64"
+before_install:
+  - go get github.com/mitchellh/gox
+  - gox -build-toolchain -osarch=$OSARCHS
+  - go get github.com/tcnksm/ghr
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/mattn/goveralls
+  - go get code.google.com/p/go.tools/cmd/cover
+script:
+  - go test -v -covermode=count -coverprofile=coverage.out ./...
+  - goveralls -coverprofile=coverage.out -service travis-ci -repotoken $COVERALLS_TOKEN
+after_success:
+  - eval make $OSARCHS
+  - ghr --username usualoma --token $GITHUB_TOKEN --replace --prerelease --debug pre-release dist/
