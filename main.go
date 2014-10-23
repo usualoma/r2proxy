@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -36,29 +37,33 @@ func (o cmdOptions) Verbose() bool {
 	return o.OptVerbose
 }
 
-func main() {
+func Run(cmdArgs []string, errorWriter io.Writer) int {
 	var err error
-	var st int
-
-	defer func() { os.Exit(st) }()
 
 	opts := &cmdOptions{}
 	p := flags.NewParser(opts, flags.PrintErrors)
-	args, err := p.Parse()
+	args, err := p.ParseArgs(cmdArgs)
 	if len(args) > 0 || err != nil {
-		st = 1
+		p.WriteHelp(errorWriter)
+		return 1
 	}
 
-	if st != 0 || opts.OptHelp {
-		p.WriteHelp(os.Stderr)
-		return
+	if opts.OptHelp {
+		p.WriteHelp(errorWriter)
+		return 0
 	}
 
 	if opts.OptVersion {
-		fmt.Fprintf(os.Stderr, "r2proxy: %s\n", version)
-		return
+		fmt.Fprintf(errorWriter, "r2proxy: %s\n", version)
+		return 0
 	}
 
 	proxy := NewProxyHttpServer(opts)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", opts.OptListenPort), proxy))
+
+	return 0
+}
+
+func main() {
+	os.Exit(Run(os.Args[1:], os.Stderr))
 }
