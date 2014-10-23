@@ -1,4 +1,4 @@
-# r2proxy
+# r2proxy [![Build Status](https://travis-ci.org/usualoma/r2proxy.svg?branch=master)](https://travis-ci.org/usualoma/r2proxy)
 
 The r2proxy (this name means "reflective reverse proxy") is an implementation of the proxy server. This program sends all the request to direct-remote-host.
 
