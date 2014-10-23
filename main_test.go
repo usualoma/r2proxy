@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TstCmdOptions(t *testing.T) {
+func TestCmdOptions(t *testing.T) {
 	opts := cmdOptions{
 		OptAllowedPorts:    []int{80, 443},
 		OptDestinationHost: "www.example.com",
@@ -19,15 +19,15 @@ func TstCmdOptions(t *testing.T) {
 		t.Errorf("got %q", opts.AllowedPorts())
 	}
 
-	if opts.DestinationHost() == "www.example.com" {
+	if opts.DestinationHost() != "www.example.com" {
 		t.Errorf("got %q", opts.DestinationHost())
 	}
 
-	if opts.DestinationPort() == 81 {
-		t.Errorf("got %q", opts.DestinationPort())
+	if opts.DestinationPort() != 81 {
+		t.Errorf("got %d", opts.DestinationPort())
 	}
 
-	if opts.Verbose() == true {
+	if opts.Verbose() != true {
 		t.Errorf("got %q", opts.Verbose())
 	}
 }
