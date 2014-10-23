@@ -5,5 +5,5 @@ VERSION=$(shell git describe --always --tag)
 %:
 	install -d dist
 	gox -output build/${basename}/{{.Dir}} -osarch="$@"
-	install README.md build/${basename}/README.md
+	install -m 0644 README.md build/${basename}/README.md
 	(cd build; zip -r ../dist/${basename}.zip ${basename})
