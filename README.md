@@ -1,4 +1,4 @@
-# r2proxy [![Build Status](https://travis-ci.org/usualoma/r2proxy.svg?branch=master)](https://travis-ci.org/usualoma/r2proxy) [![Coverage Status](https://coveralls.io/repos/usualoma/r2proxy/badge.png?branch=master)](https://coveralls.io/r/usualoma/r2proxy?branch=master) 
+# r2proxy [![Build Status](https://travis-ci.org/usualoma/r2proxy.svg?branch=master)](https://travis-ci.org/usualoma/r2proxy) [![Coverage Status](https://img.shields.io/coveralls/usualoma/r2proxy.svg)](https://coveralls.io/r/usualoma/r2proxy?branch=master)
 
 The r2proxy (this name means "reflective reverse proxy") is an implementation of the proxy server. This program sends all the request to direct-remote-host.
 
