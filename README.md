@@ -18,6 +18,8 @@ The r2proxy (this name means "reflective reverse proxy") is an implementation of
 
 ## Features
 
+* Can use a ELB's HTTPS listener.
+    * A configuration of HTTPS is unnecessary in an EC2 instance.
 * Can use the ELB's "Cookie Stickiness".
 * A configuration is unnecessary in the case of the standard usage.
 
@@ -34,7 +36,15 @@ Binary packages are available in the [releases page](https://github.com/usualoma
 go get github.com/usualoma/r2proxy
 ```
 
-## Usage
+
+## Setup
+
+1. Add a TCP listener to an ELB instance.
+1. Run r2proxy at an EC2 instance.
+1. Add proxy settings of HTTPS to "proxy.pac".
+
+
+## Command-Line Options
 
 ```
 Usage:
